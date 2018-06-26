@@ -1,0 +1,82 @@
+
+
+http://lazyswamp.blogspot.com/2018/05/a-quick-guideline-on-haskell-projects.html
+
+Stack 설치
+
+ google haskell stack
+ 
+ - https://docs.haskellstack.org/en/stable/README/
+ - Windows 인스톨러
+
+
+haskell 프로그래밍 환경
+
+ - GHC (Glasgow Haskell compiler)사용하는 옵션
+
+   ghc 컴파일러
+   ghci 인터프리터
+
+ - stack을 사용하는 옵션 (추천)
+
+
+Visual studio code
+
+ - IDE (통합 개발 환경)
+ - Haskell 플러그인을 설치하여 사용할 예정
+
+
+stack으로 하스켈 프로젝트 만들어 빌드하고 실행 파일을 만들어 실행하기
+
+ - stack new myproject
+ - cd myproject
+ - stack build myproject
+ - stack exec myproject-exe
+
+stack으로 하스켈 프로젝트 만들어 인터프리터로 실행하기
+
+ - 다른 것은 모두 동일
+ - stack ghci
+
+Visual Studio code에 프로젝트를 로딩해서 편집하고 실행하기
+
+ - stack build intero    (함수 선언으로 점프하기, 타입 보여주기 등등)
+ - code .   (VS code 실행하기)
+
+
+Visual Studio code의 하스켈 플러그인 설치
+
+ - Haskell Syntax Highlighting 플러그인
+ - Haskelly 플러그인 또는 (Haskero 플러그인)
+
+
+(참고)
+ - git을 설치하라는 메시지가 뜨면 가이드한 대로 설치
+   (git-scm.com)
+   
+ - 서광열의 하스켈 슬라이드를 한번 읽기 추천
+
+
+6/26(화)
+ : 1.1 ~ 1.2
+
+6/29(금)
+ : 1.3 ~ 1.4  
+ : 2.1 ~ 2.4
+
+7/3(화)
+ : 2.5 ~ 2.8
+
+7/6(금)
+ : TBD
+
+
+
+
+
+
+
+
+
+
+ 
