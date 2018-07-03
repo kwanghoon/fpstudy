@@ -1,0 +1,90 @@
+
+ GIT 소스코드관리 툴
+
+  - 분산방식으로 관리
+
+
+ GitHub는 Git 서비스 웹 사이트
+
+  - public / private (학생)
+
+  - cf. bitbucket 웹 사이트 
+
+  - 오픈소스소프트웨어 
+
+ *** github.com/kwanghoon/fpstudy를 fork하여 github.com/myid/fpstudy를 만들었다고 가정 ***
+
+ git clone https://github.com/{본인 아이디}/fpstudy (master branch가 생김)
+
+*** 현재 디렉토리에 fpstudy 서브디렉토리가 생김 ***
+
+*** fpstudy 디렉토리로 이동 ***
+
+ git branch working (새로 working branch를 만듬)
+
+ git branch
+
+ *master
+ working
+
+ git checkout working (master branch에서 workig branch로 전환)
+
+ git branch
+
+ master
+ *working
+
+
+ *** working branch에서 작업 ***
+ (가능하면 master branch에서 작업하지 않을 것)
+
+ *** 새로 파일 추가, 기존 파일 수정 ***
+
+ [ type con > choi.txt
+   abc
+   def
+   Ctrl+Z를 누르기
+   
+ ]
+
+ git status
+
+ git add 새로운 파일 
+
+ git status
+
+ git commit -m "이번 변경 사항은 이러 이러합니다."
+
+ git status
+
+ *** 작업한 내용이 working branch에 반영 완료 *** 
+
+	 git checkout master  (master branch로 전환)
+
+ git branch
+
+ *master
+ working
+ 
+ *** 이 상황에서 master branch는 변경내용을 가지고 없다 *** 
+
+ [  1) git remote add upstream https://github.com/kwanghoon/fpstudy.git
+       git fetch upstream master  (합하지는 않고 다운받아 가져오기만 함)
+       git rebase upstream/master (다운받은 내용을 master branch에 merge함)
+
+       git push -u origin master (내 Github repository에 남이 변경한 내용을 반영함)
+
+    cf. git pull   
+ ] 
+
+ git merge working   (working branch에서 commit한 내용을 master로 옮김)
+
+ *** 이 상황에서 master branch는 변경내용을 가지고 있다 ***
+
+ git push -u origin master 
+
+ *** Github repository에 master branch의 변경 내용을 업로드 함 ***
+
+
+
+ 
