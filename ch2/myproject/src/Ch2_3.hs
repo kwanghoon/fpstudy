@@ -6,17 +6,17 @@ module Ch2_3 where
     code :: Char -> Int
     
     code x = ord x
-    
+   ------- decode 
     decode :: Int -> Char
     
     decode x = chr x
     
-   -----decod 
+    ------ 공백을 출력하는 함수
     space :: Int -> String
     
     space 1 = " "
     space x = if x > 0 then " " ++ space (x-1) else space 1
-    
+    ----- 왼쪽 정렬, 중앙 정렬, 오른쪽 정렬
     ljustify :: Int -> String -> String
     cjustify :: Int -> String -> String
     rjustify :: Int -> String -> String
@@ -32,7 +32,7 @@ module Ch2_3 where
                 m = length x
                 lm = (n-m) `div` 2
                 rm = (n-m) - lm 
-    
+    ------ 아스키 코드 상에서 다음 문자를 출력
     nexlet :: Char -> Char
     
     nexlet 'z' = 'a'
