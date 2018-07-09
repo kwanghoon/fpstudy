@@ -45,4 +45,5 @@ module Ch2_3 where
     digitval :: Int -> Char
     
     digitval x = decode (48 + x)
-    
+
+    trips x = [(d!!0,d!!1,d!!2) | i <- [1.. length x], d <- [ take 3 (drop (i-1) x) ], length d >= 3]
