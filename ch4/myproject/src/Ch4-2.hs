@@ -134,7 +134,7 @@ dstep ys (q, rs) x  | length xs < length ys = astep xs ys
 astep xs ys = (0, xs)
 
 
--- xs = ys
+-- xs = ys // divalg을 직접사용하는 것이 아니기 때문에 ys > xs/2 란 제약은 문제가 되지 않는다.
 bstep xs ys | negative zs = (0, xs)
             | otherwise = (1,zs)
             where zs = vsub xs ys 
@@ -142,10 +142,10 @@ bstep xs ys | negative zs = (0, xs)
             -- |otherwise = vsub (vsub xs ys) ys
 
 -- bstep idea 추가.
-bstep' xs ys = inb xs ys 0
---inb::[Integer]->[Integer]->Integer->(Integer, [Integer])
-inb xs ys z | negative (vsub xs ys) = (z, xs)
-            | otherwise = inb (vsub xs ys) ys (z+1)
+-- bstep' xs ys = inb xs ys 0
+-- --inb::[Integer]->[Integer]->Integer->(Integer, [Integer])
+-- inb xs ys z | negative (vsub xs ys) = (z, xs)
+--             | otherwise = inb (vsub xs ys) ys (z+1)
 
             
 -- xs = ys + 1
@@ -192,6 +192,7 @@ vqrm zs ys = (strep qs, strep rs)
 -- vqrm [3,2,3] [1,0,6]
 -- d = 5
 -- ds = divalg ( bmul [3,2,3] 5) ( bmul [1,0,6] 5)
+--    = divalg [1,6,1,5] [5,3,0]
 -- [(0,[1,6]),(0,[1,6,1]),(3,[2,5])]
 -- rs = bdiv (snd (last ds) ) d
 -- rs = bdiv ([2,5]) 5
@@ -207,6 +208,7 @@ bdiv xs d = fst (bqrm xs d)
 bmod xs d = snd (bqrm xs d)
 
 --ex 4.2.1 absint
+--왼쪽부터 자릿수를 맞춰간다.
 add x y = 10*x + y
 absint xs = foldl1 add (strep xs)
 
@@ -215,14 +217,17 @@ absint' xs | head xs >= 0 = foldl1 add (strep xs)
 vless' xs ys = (absint xs < absint ys)
 
 --ex 4.2.4 singed-magnitude number
+--음수와 양수의 덧셈 뺄셈을 생각해본다.
 
 nsign xs | head xs >= 0 = xs
          | otherwise = [head xs * (-1)] ++ drop 1 xs
 
 sign bool xs | bool  = [head xs * (-1)] ++ drop 1 xs
              | otherwise = xs
-vadd' xs ys | negative xs == negative ys = sign (negative xs) (vadd (nsign xs) (nsign ys))
-            | vless (nsign xs) (nsign ys) = sign (negative ys) (vsub (nsign ys)(nsign xs))
+
+
+vadd' xs ys | negative xs == negative ys = sign (negative xs) (vadd (nsign xs) (nsign ys))  -- xs, ys의 부호가 같다면
+            | vless (nsign xs) (nsign ys) = sign (negative ys) (vsub (nsign ys) (nsign xs)) -- 다르다면, 절대값 비교
             | otherwise = sign (negative xs) (vsub (nsign xs)(nsign ys)) 
 
 vsub' xs ys | negative ys = vadd' xs (nsign ys)
@@ -234,8 +239,8 @@ vsub' xs ys | negative ys = vadd' xs (nsign ys)
 
 --Prove.
 -- all side, divide y
--- > (b div 2) div y <= b div (y+1) < b div y
--- > b div 2y <= b div (y+1) < b div y
+-- -> (b div 2) div y <= b div (y+1) < b div y
+-- -> b div 2y <= b div (y+1) < b div y
 -- y >= 1, 2y >= y+1 > y
 -- so, b div 2y <= b div (y+1) < b div y is true
 
@@ -247,8 +252,3 @@ vsub' xs ys | negative ys = vadd' xs (nsign ys)
 -- --> (c div a) div b = c div ab is true
 
 
---ex 4.2.12
---vqrm을 임의의 수에 대해 사용할 수 있도록 하라.
---음수의 나눗셈을 생각한다. --> 나머지는 항상 양수가 나온다. / 하스켈에서 mod 는 음수가 나올 수 있다.
---하스켈의 규칙을 따르기로 한다.
---
