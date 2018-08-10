@@ -74,3 +74,15 @@ trips xs =  let list3 = take 3 xs
 -- [(1,2,3)]
 -- *Ch3_1> trips [1, 2, 3, 4, 5]
 -- [(1,2,3),(2,3,4),(3,4,5)]
+
+-- exercise 3.5.4
+insert x xs = takeWhile (<= x) xs ++ [x] ++ dropWhile (<= x) xs
+isort xs = foldr insert [] xs
+
+-- exercise 3.5.5
+redumps xs = foldr f [] xs
+             where f y [] = [y]
+                   f y (y':ys) = if y == y' then y:ys else y:y':ys
+
+-- exercise 3.5.9
+calcE n = foldl (+) 0 (scanl (/) 1 [1..n])
